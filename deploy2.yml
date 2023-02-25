@@ -9,10 +9,10 @@ name: Deployment
 concurrency: master
 
 if hashFiles('**/_settings.json')==truename: deployment
-on:
-  pull_request:
-    branches:
-    - master
+on
+  pull_request_review:
+    types:
+      - submitted
 jobs:
   deploy:
     runs-on: windows-latest
