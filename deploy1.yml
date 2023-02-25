@@ -8,18 +8,14 @@ name: Deployment
 
 concurrency: master
 
-on:                         #when PR is merged
-  pull_request:
-   branches:
-      - master
-      - dev
-types:
-      - closed
+on:
+  pull_request_review:
+    types: [submitted]
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true && hashFiles('**/_settings.json')==true
-    runs-on: windows-latest
+  approved:
+    if: github.event.review.state == 'approved'&& hashFiles('**/_settings.json')==true
+    runs-on: ubuntu-latest
     environment: master
     steps:
     - run: |
