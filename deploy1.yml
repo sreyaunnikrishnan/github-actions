@@ -13,20 +13,21 @@ on:                         #when PR is merged
    branches:
       - master
       - dev
-    types:
+types:
       - closed
 
 jobs:
   if_merged:
     if: github.event.pull_request.merged == true && hashFiles('**/_settings.json')==true
     runs-on: windows-latest
-     environment: master
+    environment: master
     steps:
     - run: |
         -name: Convert
-on: push
+        
+on_action: push
 
-jobs:
+jobs_on:
   converter:                       #converts json to yaml
     name: Run converter
     runs-on: windows-latest
@@ -49,7 +50,7 @@ jobs:
       - name: Print json2yaml result
         run: echo "${{ steps.json2yaml.outputs.data }}"
  
-jobs:
+jobs_tobedone:
   deployment:
     runs-on: windows-latest
     environment: master
@@ -59,10 +60,3 @@ jobs:
         id: sreyaunnikrishnan
         with:
           trigger: ".deploy"
-     
-        
-        
-        
-        
-        
-        
