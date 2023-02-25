@@ -1,1 +1,13 @@
+name: deployment
+on:
+  pull_request:
+    branches:
+    - master
 
+jobs:
+  deploy:
+    runs-on: windows latest
+    steps:
+    - name: PR raised
+      - run: |
+        echo  PR raised
