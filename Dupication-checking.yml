@@ -1,0 +1,14 @@
+name: Duplicate code
+
+on: pull_request
+
+jobs:
+  duplicate-code-check:
+    name: Check for duplicate code
+    runs-on: windows-latest
+    steps:
+      - name: Check for duplicate code
+        uses: sreyaunnikrishnan/github-actions@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          directories: 
