@@ -8,6 +8,6 @@ jobs:
   deploy:
     runs-on: windows latest
     steps:
-    - name: PR raised
+    - name: PR
       - run: |
         echo  PR raised
