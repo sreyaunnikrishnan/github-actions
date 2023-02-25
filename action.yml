@@ -1,0 +1,19 @@
+name: 'YAML/JSON/XML Converter Action (Deprecated)'
+author: Yevhen Fabizhevskyi
+description: 'Please use "Data Format Converter Action" instead.'
+branding:
+  icon: eye-off
+  color: gray-dark
+inputs:
+  path:
+    description: 'Path to the file'
+    required: true
+  from:
+    description: 'Format of a file. Possible values: json, xml, yaml.'
+    required: true
+  to:
+    description: 'Format of a file as a result. Possible values: json, xml, yaml.'
+    required: true
+outputs:
+  data:
+    description: 'Content of a file in a format that is defined in format_to argument.'
