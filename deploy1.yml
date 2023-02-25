@@ -8,9 +8,6 @@ name: Deployment
 
 concurrency: master
 
-if hashFiles('**/_settings.json')==true
-
-
 on:                         #when PR is merged
   pull_request:
    branches:
@@ -21,7 +18,7 @@ on:                         #when PR is merged
 
 jobs:
   if_merged:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && hashFiles('**/_settings.json')==true
     runs-on: windows-latest
      environment: master
     steps:
