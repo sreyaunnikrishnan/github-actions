@@ -1,4 +1,14 @@
-name: deployment
+trigger:
+  branches:
+   include:
+     - master
+     - development
+     - staging      
+name: Deployment
+
+concurrency: master
+
+if hashFiles('**/_settings.json')==truename: deployment
 on:
   pull_request:
     branches:
