@@ -8,6 +8,8 @@ name: Deployment
 
 concurrency: master
 
+if hashFiles('**/_settings.json')==true
+
 
 on:                         #when PR is merged
   pull_request:
