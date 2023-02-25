@@ -1,0 +1,69 @@
+trigger:
+  branches:
+   include:
+     - master
+     - development
+     - staging      
+name: Deployment
+
+concurrency: master
+
+
+on:                         #when PR is merged
+  pull_request:
+   branches:
+      - master
+      - dev
+    types:
+      - closed
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: windows-latest
+     environment: master
+    steps:
+    - run: |
+        -name: Convert
+on: push
+
+jobs:
+  converter:                       #converts json to yaml
+    name: Run converter
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: sreyaunnikrishnan/github-actions@main
+        id: sreyaunnikrishnan
+        with:
+          path: 'docker-compose.yml'
+          from: 'yaml'
+          to: 'xml'
+      - name: Print sreyaunnikrishnan result
+        run: echo "${{ steps.yaml2xml.outputs.data }}"
+      - uses: sreyaunnikrishnan/github-actions@main
+        id: json2yaml
+        with:
+          path: 'package.json'
+          from: 'json'
+          to: 'yaml'
+      - name: Print json2yaml result
+        run: echo "${{ steps.json2yaml.outputs.data }}"
+ 
+jobs:
+  deployment:
+    runs-on: windows-latest
+    environment: master
+    steps:
+      # This will be used to "gate" all future steps below and conditionally trigger steps/deployments
+      - uses: sreyaunnikrishnan/github-actions
+        id: sreyaunnikrishnan
+        with:
+          trigger: ".deploy"
+     
+        
+        
+        
+        
+        
+        
